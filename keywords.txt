@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-LiquidCrystal	KEYWORD1
+LiquidCrystalRus	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -16,6 +16,7 @@ begin	KEYWORD2
 clear	KEYWORD2
 home	KEYWORD2
 print	KEYWORD2
+writeRaw	KEYWORD2
 setCursor	KEYWORD2
 cursor	KEYWORD2
 noCursor	KEYWORD2
@@ -30,7 +31,7 @@ rightToLeft	KEYWORD2
 scrollDisplayLeft	KEYWORD2
 scrollDisplayRight	KEYWORD2
 createChar	KEYWORD2
-setDRAMModel	KEYWORD2
+setRowOffsets	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

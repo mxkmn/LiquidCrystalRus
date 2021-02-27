@@ -1,14 +1,9 @@
-This is a fork for arduino LiquidCrystal for russian letters support. Code added transforms russian UTF8 chars to right HD44780U codes. 
+# LiquidCrystalRus с фиксом write()
 
-Also, 16x1 display support added (for those that 8x2 logically organized). 
+Это форк стандартной библиотеки LiquidCrystal последней версии (1.0.7) с поддержкой русского языка. От библиотеки mk90 тут только позаимствованная идея показа русских символов.
 
-Current compatibility - both arduino-1.0.6 and arduino-1.6.1
+Форк создан с целью решить проблему невозможности отображения многих символов, начиная с позиции '0x80'. Для отображения таких символов используйте функцию 'writeRaw()' вместо 'write()'.
 
-=====
-
-Эта ветка - копия оригинаной библиотеки LiquidCrystal из ArduinoIDE для поддержки русского языка. Добавленный код трансформирует русские символы UTF8 в правильные коды для HD44780U.
-
-Также, добавлена поддержка дисплеев 16х1, которые логически организованы как 8х2.
-
-Текущая совместимость - arduino-1.0.6 и arduino-1.6.1
-
+Вообще, я бы хотел решить проблему через вложение дополнительных файлов 'Print.h' и 'Print.cpp' рядом со стандартной 'LiquidCrystal.h', но знаний не хватило - так и не получилось сделать правильный override или вроде того. Однако стоит заметить, что модифицируя стандартный 'Print.cpp' из папки Hardware\Cores можно легко добиться идеальной работы функции 'write()' без лишних 'writeRaw()', совершенно не меняя LiquidCrystal(Rus).h и LiquidCrystal(Rus).cpp. Дело трёх минут, но модифицировать стандартные библиотеки плохо, поэтому имеем на данный момент костыль с 'writeRaw()'.
+Для модификации 'Print.cpp' нужно добавить 'utf_hi_char', 'utf_recode' из 'LiquidCrystalRus.cpp' и изменить 'size_t Print::write(const uint8_t *buffer, size_t size)' примерно так же, как изменена 'write()' по сравнению с 'writeRaw()' из 'LiquidCrystalRus.cpp'.
+Если кто-то сделает форк с реализацией через кастомные 'Print.h' и 'Print.cpp' без модификации стандартных 'LiquidCrystal.h' и 'LiquidCrystal.cpp' - напишите на email из шапки профиля, буду рад закинуть сюда ссылку на форк и юзать вашу реализацию :).
